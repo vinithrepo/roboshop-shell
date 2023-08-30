@@ -11,7 +11,6 @@ cd /app
 npm install
 yum install mongodb-org-shell -y
 mongo --host mongodb.akhildevops.online </app/schema/user.js
-
 systemctl daemon-reload
 systemctl enable user
 systemctl restart user
