@@ -10,7 +10,7 @@ unzip /tmp/catalogue.zip
 cd /app
 npm install
 yum install mongodb-org-shell -y
-mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+mongo --host mongodb.akhildevops.online </app/schema/catalogue.js
 # update mongo ip address
 # update catalogue server ip address in frontend configuration
 systemctl daemon reload
