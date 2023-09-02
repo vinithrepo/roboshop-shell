@@ -1,4 +1,4 @@
-vinith=${vinith}
+vinith=/tmp/roboshop.log
 echo -e "\e[32m<<<<<<catalogue service >>>>\e[0m"
 cp catalogue.service /etc/systemd/system/catalogue.service &>>${vinith}
 echo -e "\e[32m<<<<<< mongo repo >>>>\e[0m"
