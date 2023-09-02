@@ -15,6 +15,7 @@ mongo --host mongodb.akhildevops.online </app/schema/catalogue.js
 # update mongo ip address
 # update catalogue server ip address in frontend configuration
 systemctl daemon-reload
+
 systemctl enable catalogue
 systemctl restart catalogue
 
