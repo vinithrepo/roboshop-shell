@@ -1,4 +1,9 @@
+vinith=/tmp/roboshop.log
+
 func_apppreq() {
+    echo -e "\e[32m<<<<<<${component} service >>>>\e[0m"
+    cp ${component}.service /etc/systemd/system/${component}.service &>>${vinith}
+    
     echo -e "\e[32m<<<<<<useradd >>>>\e[0m"
     useradd roboshop &>>${vinith}
     echo -e "\e[32m<<<<<<rm dir >>>>\e[0m"
@@ -24,7 +29,7 @@ func_systemd() {
 }
 
 func_nodejs() {
-  vinith=/tmp/roboshop.log
+
   echo -e "\e[32m<<<<<<${component} service >>>>\e[0m"
   cp ${component}.service /etc/systemd/system/${component}.service &>>${vinith}
   echo -e "\e[32m<<<<<<${component} repo >>>>\e[0m"
@@ -47,9 +52,7 @@ func_nodejs() {
 }
 
 func_java() {
-  vinith=/tmp/roboshop.log
-  echo -e "\e[32m<<<<<<${component} service >>>>\e[0m"
-  cp ${component}.service /etc/systemd/system/${component}.service &>>${vinith}
+  
   echo -e "\e[32m<<<<<<${component} install maven >>>>\e[0m"
   yum install maven -y  &>>${vinith}
 
@@ -63,6 +66,17 @@ func_java() {
   yum install mysql -y &>>${vinith}
   echo -e "\e[32m<<<<<< load schema >>>>\e[0m"
   mysql -h mysql.akhildevops.online -uroot -pRoboShop@1 < /app/schema/${component}.sql &>>${vinith}
+
+  func_systemd
+}
+func_python() {
+  echo -e "\e[32m<<<<<<${component} install python >>>>\e[0m"
+  yum install python36 gcc python3-devel -y &>>${vinith}
+
+  func_apppreq
+
+  echo -e "\e[32m<<<<<<${component} requirements >>>>\e[0m"
+  pip3.6 install -r requirements.txt &>>${vinith}
 
   func_systemd
 }
