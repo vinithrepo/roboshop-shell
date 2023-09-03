@@ -30,8 +30,6 @@ func_systemd() {
 
 func_nodejs() {
 
-  echo -e "\e[32m<<<<<<${component} service >>>>\e[0m"
-  cp ${component}.service /etc/systemd/system/${component}.service &>>${vinith}
   echo -e "\e[32m<<<<<<${component} repo >>>>\e[0m"
   cp mongo.repo /etc/yum.repos.d/mongo.repo &>>${vinith}
   echo -e "\e[32m<<<<<<rpm >>>>\e[0m"
