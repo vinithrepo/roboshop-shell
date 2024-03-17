@@ -3,7 +3,7 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.
 
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
-dnf install rabbitmq-server -y
+yum install rabbitmq-server -y
 
 rabbitmqctl add_user roboshop roboshop123
 
