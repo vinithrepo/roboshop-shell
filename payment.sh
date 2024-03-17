@@ -1,6 +1,6 @@
 cp payment.service /etc/systemd/system/payment.service
 
-dnf install python36 gcc python3-devel -y
+yum install python36 gcc python3-devel -y
 
 useradd roboshop
 
