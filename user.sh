@@ -1,9 +1,9 @@
 cp user.service /etc/systemd/system/user.service
 
-dnf module disable nodejs -y
-dnf module enable nodejs:18 -y
+yum module disable nodejs -y
+yum module enable nodejs:18 -y
 
-dnf install nodejs -y
+yum install nodejs -y
 
 useradd roboshop
 
