@@ -1,19 +1,15 @@
 cp catalogue.service /etc/systemd/system/catalogue.service
 cp mongo.repo /etc/yum.repos.d/mongo.repo
 
-yum module disable nodejs -y
+dnf module disable nodejs -y
+dnf module enable nodejs:18 -y
 
-yum module enable nodejs:18 -y
-
-yum install nodejs -y
-
-yum install mongodb-org-shell -y
-
-mongo --host 172.31.32.49 </app/schema/catalogue.js
+dnf install nodejs -y
 
 useradd roboshop
 
 mkdir /app
+
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
 cd /app
 unzip /tmp/catalogue.zip
@@ -21,10 +17,12 @@ unzip /tmp/catalogue.zip
 cd /app
 npm install
 
+dnf install mongodb-org-shell -y
+
+mongo --host MONGODB-SERVER-IPADDRESS </app/schema/catalogue.js
+
 systemctl daemon-reload
 
 systemctl enable catalogue
-systemctl restart catalogue
-
-
+systemctl start catalogue
 
