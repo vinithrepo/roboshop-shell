@@ -1,9 +1,9 @@
-cp user.service /etc/systemd/system/user.service
+cp user.service  /etc/systemd/system/user.service
 
-yum module disable nodejs -y
-yum module enable nodejs:18 -y
+dnf module disable nodejs -y
+dnf module enable nodejs:18 -y
 
-yum install nodejs -y
+dnf install nodejs -y
 
 useradd roboshop
 
@@ -19,4 +19,5 @@ npm install
 systemctl daemon-reload
 
 systemctl enable user
-systemctl restart user
+systemctl start user
+
