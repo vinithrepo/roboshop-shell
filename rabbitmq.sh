@@ -3,9 +3,10 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/erlang/script.rpm.
 
 curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/script.rpm.sh | bash
 
-yum install rabbitmq-server -y
+dnf install rabbitmq-server -y
 
 rabbitmqctl add_user roboshop roboshop123
+rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
 
 systemctl enable rabbitmq-server
 systemctl restart rabbitmq-server
