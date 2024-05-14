@@ -19,7 +19,7 @@ npm install
 
 dnf install mongodb-org-shell -y
 
-mongo --host 172.31.27.87 </app/schema/catalogue.js
+mongo --host mongodb.vinithaws.online </app/schema/catalogue.js
 
 systemctl daemon-reload
 
