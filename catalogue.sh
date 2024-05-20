@@ -1,35 +1,35 @@
 
-echo ">>>> Hello World <<<<"
+echo ">>>> creating catalogue service  <<<<"
 cp catalogue.service /etc/systemd/system/catalogue.service
-echo ">>>> Hello World <<<<"
+echo ">>>> mongo repo <<<<"
 cp mongo.repo /etc/yum.repos.d/mongo.repo
-echo ">>>> Hello World <<<<"
+echo ">>>> disable nodejs <<<<"
 dnf module disable nodejs -y
-echo ">>>> Hello World <<<<"
+echo ">>>> enable nodejs`` <<<<"
 dnf module enable nodejs:18 -y
-echo ">>>> Hello World <<<<"
+echo ">>>> install nodejs <<<<"
 dnf install nodejs -y
-echo ">>>> Hello World <<<<"
+echo ">>>> adding user  <<<<"
 useradd roboshop
-echo ">>>> Hello World <<<<"
+
 mkdir /app
-echo ">>>> Hello World <<<<"
+echo ">>>> dowlnloading zip <<<<"
 curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue.zip
-echo ">>>> Hello World <<<<"
+echo ">>> extracting zip <<<"
 cd /app
 unzip /tmp/catalogue.zip
 
 cd /app
-echo ">>>> Hello World <<<<"
+echo ">>>> dowlnloading dependencies <<<<"
 npm install
-echo ">>>> Hello World <<<<"
+echo ">>>> install DB shell <<<<"
 dnf install mongodb-org-shell -y
 
-echo ">>>> Hello World <<<<"
+echo ">>>> load schema <<<<"
 
 mongo --host mongodb.vinithaws.online </app/schema/catalogue.js
 
-echo ">>>> Hello World <<<<"
+echo ">>>> start service <<<<"
 
 systemctl daemon-reload
 
