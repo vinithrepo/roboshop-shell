@@ -11,6 +11,8 @@ echo ">>>> install nodejs <<<<"
 dnf install nodejs -y
 echo ">>>> adding user  <<<<"
 useradd roboshop
+echo ">>>> cleaning directory  <<<<"
+rm -rf /app
 
 mkdir /app
 echo ">>>> dowlnloading zip <<<<"
