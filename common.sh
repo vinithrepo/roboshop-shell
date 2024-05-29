@@ -15,13 +15,9 @@ func_nodejs(){
 
   echo  -e "\e[32m>>>> dowlnloading dependencies <<<<\e[0m"   | tee -a  ${log}
   npm install   &>>${log}
-  echo  -e "\e[32m>>>> install DB shell <<<<\e[0m"   | tee -a  ${log}
-  dnf install mongodb-org-shell -y   &>>${log}
-  
-  echo  -e "\e[32m>>>> load schema <<<<\e[0m"   | tee -a  ${log}
-  
-  mongo --host mongodb.vinithaws.online </app/schema/${component}.js   &>>${log}
-  
+
+  func_schema_setup
+
   func_systemd
 
 }
@@ -66,7 +62,7 @@ func_python(){
   
   func_systemd
 }
-func_maven(){
+func_java(){
   
 echo  -e "\e[32m>>>> install maven <<<<\e[0m"   | tee -a  ${log}
 dnf install maven -y
@@ -76,11 +72,27 @@ echo  -e "\e[32m>>>> cleaning up the package <<<<\e[0m"   | tee -a  ${log}
 mvn clean package  &>>${log}
 mv target/${component}-1.0.jar ${component}.jar  &>>${log}
 
-echo  -e "\e[32m>>>> install mysql <<<<\e[0m"   | tee -a  ${log}
-dnf install mysql -y   &>>${log}
-
-echo  -e "\e[32m>>>> load shipping db schema <<<<\e[0m"   | tee -a  ${log}
-mysql -h mysql.vinithaws.online -uroot -pRoboShop@1 < /app/schema/${component}.sql  &>>${log}
+func_schema_setup
 
 func_systemd
+}
+func_schema_setup(){
+  if [$(schema_type)==mongodb]; then
+    echo  -e "\e[32m>>>> install DB shell <<<<\e[0m"   | tee -a  ${log}
+    dnf install mongodb-org-shell -y   &>>${log}
+
+    echo  -e "\e[32m>>>> load schema <<<<\e[0m"   | tee -a  ${log}
+
+    mongo --host mongodb.vinithaws.online </app/schema/${component}.js   &>>${log}
+  fi
+
+  if [$(schema_type)==mysql]; then
+    echo  -e "\e[32m>>>> install mysql <<<<\e[0m"   | tee -a  ${log}
+    dnf install mysql -y   &>>${log}
+
+    echo  -e "\e[32m>>>> load shipping db schema <<<<\e[0m"   | tee -a  ${log}
+    mysql -h mysql.vinithaws.online -uroot -pRoboShop@1 < /app/schema/${component}.sql  &>>${log}
+
+  fi
+
 }
