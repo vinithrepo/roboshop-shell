@@ -38,6 +38,8 @@ func_apppreq(){
   echo  -e "\e[32m>>>> adding user  <<<<\e[0m"   | tee -a  ${log}
   useradd roboshop  &>>${log}
 
+  rm -f /app &>>${log}
+
   mkdir /app &>>${log}
   echo  -e "\e[32m>>>> downloading ${component} <<<<\e[0m"   | tee -a  ${log}
   curl -L -o /tmp/${component}.zip https://roboshop-artifacts.s3.amazonaws.com/${component}.zip  &>>${log}
