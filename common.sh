@@ -38,7 +38,7 @@ func_apppreq(){
   echo  -e "\e[32m>>>> adding user  <<<<\e[0m"   | tee -a  ${log}
   useradd roboshop  &>>${log}
 
-  rm -f /app &>>${log}
+  rm -rf /app &>>${log}
 
   mkdir /app &>>${log}
   echo  -e "\e[32m>>>> downloading ${component} <<<<\e[0m"   | tee -a  ${log}
